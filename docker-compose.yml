@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.3"
 
 services:
   influxdb:
@@ -9,18 +9,18 @@ services:
     volumes:
       - influxdb-storage:/var/lib/influxdb
     environment:
-      - INFLUXDB_DB=sesores
+      - INFLUXDB_DB=sensores
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=admin
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
     
-  driver:
-    build:
-      context: ./DRIVER
-    restart: always
-    depends_on:
-      - influxdb
+  # driver:
+  #   build:
+  #     context: ./DRIVER
+  #   restart: always
+  #   depends_on:
+  #     - influxdb
 
   chronograf:
     image: chronograf:1.8.4-alpine

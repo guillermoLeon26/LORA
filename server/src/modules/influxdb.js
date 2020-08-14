@@ -9,14 +9,15 @@ const retentionPolicy = 'default'
 const bucket = `${database}/${retentionPolicy}`
 
 const clientOptions = {
-  url: 'http://influxdb:8086',
-  // url: 'http://localhost:8086',
+  // url: 'http://influxdb:8086',
+  url: 'http://localhost:8086',
   token: `${username}:${password}`,
 }
 
 const influxDB = new InfluxDB(clientOptions)
 
 const escribirInflux = api => {
+  console.log('escribir-influx')
   return new Promise((resolve, reject) => {
     api
       .close()
@@ -27,7 +28,7 @@ const escribirInflux = api => {
 
 exports.influxDB = influxDB
 
-exports.grabarData = puntos => {
+exports.grabarData = async puntos => {
   try {
     let writeAPI = influxDB.getWriteApi('', bucket)
  
