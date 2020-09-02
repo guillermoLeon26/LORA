@@ -15,12 +15,14 @@ services:
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
     
-  # driver:
-  #   build:
-  #     context: ./DRIVER
-  #   restart: always
-  #   depends_on:
-  #     - influxdb
+  server:
+    build:
+      context: ./server
+    ports:
+      - '4000:4000'
+    restart: always
+    depends_on:
+      - influxdb
 
   chronograf:
     image: chronograf:1.8.4-alpine
